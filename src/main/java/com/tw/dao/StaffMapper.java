@@ -5,6 +5,7 @@ import com.tw.pojo.Staff;
 import java.util.List;
 
 public interface StaffMapper {
+
     //  增加一个员工
     boolean addStaff(Staff staff);
 
