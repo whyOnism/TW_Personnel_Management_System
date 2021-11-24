@@ -10,7 +10,7 @@
         VALUES (#{StaffId}, #{StaffName}, #{StaffAge}, #{StaffSex}, #{StaffPolitical}, #{StaffPosition},
                 #{StaffDepartment}, #{StaffAddress}, #{HireDate}, #{WorkingYears});
     </insert>
-
+    <!-- 测试-->
     <!--根据StaffId删除一个员工-->
     <delete id="deleteStaffByStaffId" parameterType="int">
         delete
