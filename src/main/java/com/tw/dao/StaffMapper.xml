@@ -11,7 +11,7 @@
                 #{StaffDepartment}, #{StaffAddress}, #{HireDate}, #{WorkingYears});
     </insert>
     <!--根据StaffId删除一个员工-->
-    <delete id="deleteStaffByStaffId" parameterType="int">
+    <delete id="deleteStaffByStaffId">
         delete
         from personnel_management.staff
         where StaffId = #{StaffId}
