@@ -3,6 +3,7 @@ package com.tw.service;
 import com.tw.pojo.Staff;
 
 import java.util.List;
+import java.util.Map;
 
 public interface StaffService {
 
@@ -20,4 +21,7 @@ public interface StaffService {
 
     //  查询所有员工返回一个List集合
     List<Staff> queryAllStaff();
+
+    //姓名的模糊查询
+    List<Staff> queryStaffLikeSurname(Map<String, Object> map);
 }

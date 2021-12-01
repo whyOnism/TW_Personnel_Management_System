@@ -43,4 +43,11 @@
         SELECT *
         from personnel_management.staff
     </select>
+
+    <!--通过姓名模糊查询-->
+    <select id="queryStaffLikeSurname" resultType="Staff">
+        select *
+        from personnel_management.staff
+        where StaffName like #{StaffSurname}
+    </select>
 </mapper>

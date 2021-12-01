@@ -4,6 +4,7 @@ import com.tw.dao.StaffMapper;
 import com.tw.pojo.Staff;
 
 import java.util.List;
+import java.util.Map;
 
 public class StaffServiceImpl implements StaffService {
     private StaffMapper staffMapper;
@@ -35,5 +36,10 @@ public class StaffServiceImpl implements StaffService {
     @Override
     public List<Staff> queryAllStaff() {
         return staffMapper.queryAllStaff();
+    }
+
+    @Override
+    public List<Staff> queryStaffLikeSurname(Map<String, Object> map) {
+        return staffMapper.queryStaffLikeSurname(map);
     }
 }
