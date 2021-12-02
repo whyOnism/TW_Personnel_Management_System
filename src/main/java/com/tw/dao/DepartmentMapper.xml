@@ -15,7 +15,7 @@
         where DepartmentId = #{DepartmentId}
     </delete>
     <!--更新部门信息-->
-    <update id="queryDepartmentByDepartmentId" parameterType="Department">
+    <update id="updateDepartment" parameterType="Department">
         update personnel_management.department
         set StaffId=#{StaffId},
             DepartmentName=#{DepartName}
@@ -31,7 +31,7 @@
 
     <!--查询所有部门返回一个List集合-->
     <select id="queryAllDepartment" resultType="Department">
-        SELECT *
+        select *
         from personnel_management.department
     </select>
 

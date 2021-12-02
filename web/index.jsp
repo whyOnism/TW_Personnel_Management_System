@@ -25,5 +25,8 @@
 <h3>
     <a href="${pageContext.request.contextPath}/staff/allStaff">点击进入列表页</a>
 </h3>
+<h3>
+    <a href="${pageContext.request.contextPath}/department/allDepartment">点击进入列表页</a>
+</h3>
 </body>
 </html>

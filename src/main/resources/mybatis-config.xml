@@ -8,5 +8,6 @@
     </typeAliases>
     <mappers>
         <mapper resource="com/tw/dao/StaffMapper.xml"/>
+        <mapper resource="com/tw/dao/DepartmentMapper.xml"/>
     </mappers>
 </configuration>
