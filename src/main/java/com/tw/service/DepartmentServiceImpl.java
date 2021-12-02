@@ -9,6 +9,14 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     private DepartmentMapper departmentMapper;
 
+    public DepartmentMapper getDepartmentMapper() {
+        return departmentMapper;
+    }
+
+    public void setDepartmentMapper(DepartmentMapper departmentMapper) {
+        this.departmentMapper = departmentMapper;
+    }
+
     @Override
     public boolean addDepartment(Department department) {
         return departmentMapper.addDepartment(department);

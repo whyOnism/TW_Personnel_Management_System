@@ -41,7 +41,7 @@ public class StaffController {
     }
 
     @RequestMapping("/toUpdateStaff")
-    public String toUpdateBook(Model model, String staffId) {
+    public String toUpdateStaff(Model model, String staffId) {
         Staff staff = staffService.queryStaffByStaffId(staffId);
         System.out.println(staff);
         model.addAttribute("staff", staff);
@@ -49,7 +49,7 @@ public class StaffController {
     }
 
     @RequestMapping("/updateStaff")
-    public String updateBook(Model model, Staff staffs) {
+    public String updateStaff(Model model, Staff staffs) {
         System.out.println(staffs);
         staffService.updateStaff(staffs);
         Staff staff = staffService.queryStaffByStaffId(staffs.getStaffId());
