@@ -19,9 +19,13 @@
     <bean id="administratorsServiceImpl" class="com.tw.service.impl.AdministratorsServiceImpl">
         <property name="administratorsMapper" ref="administratorsMapper"/>
     </bean>
-    <!--AdministratorsServiceImpl注入到IOC容器中-->
+    <!--ordinaryServiceImpl注入到IOC容器中-->
     <bean id="ordinaryServiceImpl" class="com.tw.service.impl.OrdinaryServiceImpl">
         <property name="ordinaryMapper" ref="ordinaryMapper"/>
+    </bean>
+    <!--AgreementServiceImpl注入到IOC容器中-->
+    <bean id="agreementServiceImpl" class="com.tw.service.impl.AgreementServiceImpl">
+        <property name="agreementMapper" ref="agreementMapper"/>
     </bean>
     <!-- 配置事务管理器 -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
