@@ -1,7 +1,8 @@
-package com.tw.service;
+package com.tw.service.impl;
 
 import com.tw.dao.DepartmentMapper;
 import com.tw.pojo.Department;
+import com.tw.service.DepartmentService;
 
 import java.util.List;
 

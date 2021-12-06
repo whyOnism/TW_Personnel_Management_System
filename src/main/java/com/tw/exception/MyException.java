@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MyException extends Exception {
-    private static final long serialVersionUID = 1L;
     private static final Map<Integer, MyException> exceptionMap = new HashMap<>();
     private static final Map<Integer, String> errorMsgMap = new HashMap<>();
 

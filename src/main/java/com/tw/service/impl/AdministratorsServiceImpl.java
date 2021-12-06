@@ -1,7 +1,8 @@
-package com.tw.service;
+package com.tw.service.impl;
 
 import com.tw.dao.AdministratorsMapper;
 import com.tw.pojo.Administrators;
+import com.tw.service.AdministratorsService;
 
 public class AdministratorsServiceImpl implements AdministratorsService {
 
