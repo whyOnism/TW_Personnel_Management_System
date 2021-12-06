@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping("/department")
 public class DepartmentController {
     @Autowired
-    @Qualifier("DepartmentServiceImpl")
+    @Qualifier("departmentServiceImpl")
     private DepartmentService departmentService;
 
     @RequestMapping("/allDepartment")

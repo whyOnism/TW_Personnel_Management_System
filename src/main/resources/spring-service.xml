@@ -8,12 +8,16 @@
     <context:component-scan base-package="com.tw.service"/>
 
     <!--StaffServiceImpl注入到IOC容器中-->
-    <bean id="StaffServiceImpl" class="com.tw.service.StaffServiceImpl">
+    <bean id="staffServiceImpl" class="com.tw.service.StaffServiceImpl">
         <property name="staffMapper" ref="staffMapper"/>
     </bean>
     <!--DepartmentServiceImpl注入到IOC容器中-->
-    <bean id="DepartmentServiceImpl" class="com.tw.service.DepartmentServiceImpl">
+    <bean id="departmentServiceImpl" class="com.tw.service.DepartmentServiceImpl">
         <property name="departmentMapper" ref="departmentMapper"/>
+    </bean>
+    <!--AdministratorsServiceImpl注入到IOC容器中-->
+    <bean id="administratorsServiceImpl" class="com.tw.service.AdministratorsServiceImpl">
+        <property name="administratorsMapper" ref="administratorsMapper"/>
     </bean>
     <!-- 配置事务管理器 -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping("/staff")
 public class StaffController {
     @Autowired
-    @Qualifier("StaffServiceImpl")
+    @Qualifier("staffServiceImpl")
     private StaffService staffService;
 
     @RequestMapping("/allStaff")

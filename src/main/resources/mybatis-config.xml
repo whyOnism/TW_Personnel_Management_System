@@ -9,5 +9,6 @@
     <mappers>
         <mapper resource="com/tw/dao/StaffMapper.xml"/>
         <mapper resource="com/tw/dao/DepartmentMapper.xml"/>
+        <mapper resource="com/tw/dao/AdministratorsMapper.xml"/>
     </mappers>
 </configuration>
