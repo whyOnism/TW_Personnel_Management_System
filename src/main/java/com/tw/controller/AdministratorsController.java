@@ -24,7 +24,7 @@ public class AdministratorsController {
     @ResponseBody
     public HashMap<String, Object> login(Administrators administrators, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        session.setAttribute("name", administrators.getAdminUserName());
+        session.setAttribute("username", administrators.getAdminUserName());
 
         HashMap<String, Object> map = new HashMap<>();
         if (administratorsService.selectAdminByAdminUserNameExist(administrators.getAdminUserName())) {
