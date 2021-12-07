@@ -1,9 +1,10 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>TW-企业人事管理系统</title>
-    <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/cover.css">
+    <link rel="stylesheet" href="<c:url value="/css/bootstrap/bootstrap.min.css"/>">
+    <link rel="stylesheet" href="<c:url value="/css/cover.css"/>">
 </head>
 <body class="d-flex h-100 text-center text-white bg-dark">
 
@@ -35,7 +36,7 @@
                 href="#" class="text-white">@ TW</a>.</p>
     </footer>
 </div>
-<script type="text/javascript" src="/js/jquery-3.5.1.js"/>
-<script type="text/javascript" src="/js/bootstrap.min.js"/>
+<script type="text/javascript" src="<c:url value="/js/jquery-3.5.1.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/js/bootstrap.min.js"/>"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>Login</title>
@@ -12,11 +12,11 @@
     <form action="${pageContext.request.contextPath}/login/verification" method="post">
         <h1 class="h3 mb-3 fw-normal text-white">登&nbsp;&nbsp;录</h1>
         <div class="form-floating mb-2">
-            <input type="username" class="form-control" id="floatingUsername" placeholder="username">
+            <input type="username" class="form-control" id="floatingUsername" placeholder="username" name="username">
             <label for="floatingUsername">用户名</label>
         </div>
         <div class="form-floating mb-2">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
             <label for="floatingPassword">密码</label>
         </div>
 
@@ -30,7 +30,7 @@
         <p class="mt-5 mb-3 text-muted">© 2021–2022</p>
     </form>
 </main>
-<script type="text/javascript" src="<c:url value="/js/jquery-3.5.1.js"/>"/>
-<script type="text/javascript" src="<c:url value="/js/bootstrap.min.js"/>"/>
+<script type="text/javascript" src="<c:url value="/js/jquery-3.5.1.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/js/bootstrap.min.js"/>"></script>
 </body>
 </html>

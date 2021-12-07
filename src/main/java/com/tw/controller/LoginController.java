@@ -2,7 +2,8 @@ package com.tw.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/login")
@@ -13,11 +14,17 @@ public class LoginController {
     }
 
     @RequestMapping("/verification")
-    public String VerificationUserType(@RequestParam("userType") String userType) {
-        if (userType == "Admin")
+    public String VerificationUserType(HttpSession session, String userType, String username, String password) {
+        System.out.println(username + " " + password);
+        session.setAttribute("userType", userType);
+        session.setAttribute("username", username);
+        session.setAttribute("password", password);
+        if (userType.equals("Admin")) {
             return "redirect:/admin/login";
-        if (userType == "Ordinary")
+        }
+        if (userType.equals("Ordinary")) {
             return "redirect:/user/login";
+        }
         return "login";
     }
 }

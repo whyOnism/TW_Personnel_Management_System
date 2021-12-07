@@ -14,11 +14,11 @@ public class Administrators {
     private static final long serialVersionUID = 1L;
 
     private String AdminId;
-    private String AdminUserName;
-    private String AdminPassword;
+    private String UserName;
+    private String Password;
 
-    public Administrators(String adminUserName, String adminPassword) {
-        AdminUserName = adminUserName;
-        AdminPassword = adminPassword;
+    public Administrators(String userName, String password) {
+        UserName = userName;
+        Password = password;
     }
 }
