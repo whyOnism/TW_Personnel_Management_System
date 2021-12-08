@@ -1,5 +1,6 @@
 package com.tw.controller;
 
+import com.tw.pojo.Page;
 import com.tw.pojo.Staff;
 import com.tw.service.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +20,8 @@ public class StaffController {
     private StaffService staffService;
 
     @RequestMapping("/allStaff")
-    public String list(Model model) {
-        List<Staff> list = staffService.queryAllStaff();
-        for (Staff staff : list) {
-            System.out.println(staff);
-        }
-        model.addAttribute("list", list);
-        return "allStaff";
+    public String list() {
+        return "StaffPage";
     }
 
     @RequestMapping("/toAddStaff")
@@ -62,5 +58,19 @@ public class StaffController {
         staffService.deleteStaffByStaffId(staffId);
         System.out.println("删除成功！");
         return "redirect:/staff/allStaff";
+    }
+
+    @RequestMapping("staff_list")
+    public String list(Model model, Page page) {
+        List<Staff> list = staffService.list(page);
+        int total = staffService.total();
+        page.setTotal(total);
+        model.addAttribute("list", list);
+        model.addAttribute("page", page);
+        System.out.println(page);
+        for (Staff staff : list) {
+            System.out.println(staff);
+        }
+        return "StaffPage";
     }
 }

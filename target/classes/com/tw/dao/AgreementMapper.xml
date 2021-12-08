@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tw.dao.AgreementMapper">
+
+    <select id="findAgreement" parameterType="String" resultType="Agreement">
+        select AgreementId, StaffId, AgreementLife, AgreementContext
+        from personnel_management.agreement,personnel_management.staff
+        where personnel_management.staff.StaffId = personnel_management.agreement.StaffId
+        <if test="StaffName!=null and StaffName!=''">
+            and personnel_management.staff.StaffName=#{StaffName}
+        </if>
+    </select>
+
+    <delete id="deleteAgreement" parameterType="int">
+        delete
+        from personnel_management.agreement
+        where AgreementId = #{AgreementId}
+    </delete>
+
+    <insert id="addAgreement" parameterType="Agreement">
+        insert into personnel_management.agreement (AgreementId, StaffId, AgreementLife, AgreementContext)
+        values (#{AgreementId}, #{StaffId}, #{AgreementLife}, #{AgreementContext})
+    </insert>
+
+    <update id="updateAgreement" parameterType="Agreement">
+        update personnel_management.agreement
+        set AgreementLife=#{AgreementLife},
+            AgreementContext=#{AgreementContext}
+        where AgreementId = #{AgreementId}
+    </update>
+    <select id="queryAllAgreement" resultType="Agreement">
+        select *
+        from personnel_management.agreement
+    </select>
+</mapper>

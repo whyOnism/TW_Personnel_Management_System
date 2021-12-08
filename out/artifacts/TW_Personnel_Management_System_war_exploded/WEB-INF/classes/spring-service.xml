@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 扫描service相关的bean -->
+    <context:component-scan base-package="com.tw.service"/>
+
+    <!--StaffServiceImpl注入到IOC容器中-->
+    <bean id="staffServiceImpl" class="com.tw.service.impl.StaffServiceImpl">
+        <property name="staffMapper" ref="staffMapper"/>
+    </bean>
+    <!--DepartmentServiceImpl注入到IOC容器中-->
+    <bean id="departmentServiceImpl" class="com.tw.service.impl.DepartmentServiceImpl">
+        <property name="departmentMapper" ref="departmentMapper"/>
+    </bean>
+    <!--AdministratorsServiceImpl注入到IOC容器中-->
+    <bean id="administratorsServiceImpl" class="com.tw.service.impl.AdministratorsServiceImpl">
+        <property name="administratorsMapper" ref="administratorsMapper"/>
+    </bean>
+    <!--ordinaryServiceImpl注入到IOC容器中-->
+    <bean id="ordinaryServiceImpl" class="com.tw.service.impl.OrdinaryServiceImpl">
+        <property name="ordinaryMapper" ref="ordinaryMapper"/>
+    </bean>
+    <!--AgreementServiceImpl注入到IOC容器中-->
+    <bean id="agreementServiceImpl" class="com.tw.service.impl.AgreementServiceImpl">
+        <property name="agreementMapper" ref="agreementMapper"/>
+    </bean>
+    <!-- 配置事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!-- 注入数据库连接池 -->
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+</beans>

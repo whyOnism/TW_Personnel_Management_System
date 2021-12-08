@@ -1,5 +1,6 @@
 package com.tw.dao;
 
+import com.tw.pojo.Page;
 import com.tw.pojo.Staff;
 
 import java.util.List;
@@ -24,6 +25,11 @@ public interface StaffMapper {
 
     //姓名的模糊查询
     List<Staff> queryStaffLikeSurname(Map<String, Object> map);
+
+    //分页查询
+    List<Staff> list(Page page);
+
+    int total();
 
 
 }
