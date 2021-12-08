@@ -15,4 +15,9 @@
         where UserName = #{UserName}
           and Password = #{Password}
     </select>
+
+    <insert id="addUser" parameterType="Ordinary">
+        insert into personnel_management.ordinary (UserId, UserName, Password)
+        values (#{UserId}, #{UserName}, #{Password})
+    </insert>
 </mapper>

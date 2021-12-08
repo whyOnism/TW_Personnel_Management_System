@@ -4,6 +4,10 @@ import com.tw.dao.OrdinaryMapper;
 import com.tw.pojo.Ordinary;
 import com.tw.service.OrdinaryService;
 
+
+/**
+ * @author why099
+ */
 public class OrdinaryServiceImpl implements OrdinaryService {
 
     private OrdinaryMapper ordinaryMapper;
@@ -30,5 +34,10 @@ public class OrdinaryServiceImpl implements OrdinaryService {
     public boolean selectUserByUserNameCheck(Ordinary ordinary) {
         Ordinary check = ordinaryMapper.selectUserByUserNameCheck(ordinary);
         return check != null;
+    }
+
+    @Override
+    public boolean addUser(Ordinary ordinary) {
+        return ordinaryMapper.addUser(ordinary);
     }
 }

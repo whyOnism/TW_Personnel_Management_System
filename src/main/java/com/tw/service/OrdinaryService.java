@@ -8,4 +8,7 @@ public interface OrdinaryService {
 
     //选择用户
     boolean selectUserByUserNameCheck(Ordinary ordinary);
+
+    //增加一个用户
+    boolean addUser(Ordinary ordinary);
 }

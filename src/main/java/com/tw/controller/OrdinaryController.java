@@ -44,4 +44,12 @@ public class OrdinaryController {
             return "login";
         }
     }
+
+//    @RequestMapping("/register")
+//    public Serializable register(HttpSession session, String username, String password){
+//        username = (String) session.getAttribute("username");
+//        password = (String) session.getAttribute("password");
+//        System.out.println(username + " " + password);
+//        Ordinary ordinary = new Ordinary(username, password);
+//    }
 }

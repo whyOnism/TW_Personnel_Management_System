@@ -40,14 +40,14 @@
                 <h2 class="h5">${username}</h2><span>企业人事管理系统</span>
             </div>
             <!-- Small Brand information, appears on minimized sidebar-->
-            <div class="sidenav-header-logo"><a href="index.html" class="brand-small text-center">
+            <div class="sidenav-header-logo"><a href="#" class="brand-small text-center">
                 <strong>T</strong><strong class="text-primary">W</strong></a></div>
         </div>
         <!-- Sidebar Navigation Menus-->
         <div class="main-menu">
             <h5 class="sidenav-heading">主要</h5>
             <ul id="side-main-menu" class="side-menu list-unstyled">
-                <li><a href="index.html"> <i class="icon-home"></i>主页 </a></li>
+                <li><a href="/"> <i class="icon-home"></i>主页 </a></li>
                 <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i
                         class="icon-interface-windows"></i>数据信息</a>
                     <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
@@ -73,7 +73,8 @@
                     </a></div>
                     <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
                         <!-- Log out-->
-                        <li class="nav-item"><a href="login.html" class="nav-link logout"> <span
+                        <li class="nav-item"><a href="${pageContext.request.contextPath}/login/logout"
+                                                class="nav-link logout"> <span
                                 class="d-none d-sm-inline-block">Logout</span><i
                                 class="fa fa-sign-out"></i></a></li>
                     </ul>
@@ -90,7 +91,7 @@
                     <div class="wrapper count-title d-flex">
                         <div class="icon"><i class="icon-user"></i></div>
                         <div class="name"><strong class="text-uppercase">员工数</strong><span>在职员工</span>
-                            <div class="count-number">${page.getTotal()}</div>
+                            <div class="count-number"><% out.println(session.getAttribute("staffNumber"));%></div>
                         </div>
                     </div>
                 </div>
