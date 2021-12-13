@@ -1,8 +1,10 @@
 package com.tw.controller;
 
 import com.tw.pojo.Department;
+import com.tw.pojo.Page;
+import com.tw.pojo.Staff;
 import com.tw.service.DepartmentService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.tw.service.StaffService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,12 +13,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
+/**
+ * @author why099
+ */
 @Controller
 @RequestMapping("/department")
 public class DepartmentController {
-    @Autowired
+
     @Qualifier("departmentServiceImpl")
-    private DepartmentService departmentService;
+    private final DepartmentService departmentService;
+
+    private final StaffService staffService;
+
+    public DepartmentController(DepartmentService departmentService, StaffService staffService) {
+        this.departmentService = departmentService;
+        this.staffService = staffService;
+    }
 
     @RequestMapping("/allDepartment")
     public String list(Model model) {
@@ -25,7 +37,7 @@ public class DepartmentController {
             System.out.println(department);
         }
         model.addAttribute("list", list);
-        return "allDepartment";
+        return "DepartmentPage";
     }
 
     @RequestMapping("/toAddDepartment")
@@ -37,7 +49,7 @@ public class DepartmentController {
     public String addPaper(Department department) {
         System.out.println(department);
         departmentService.addDepartment(department);
-        return "redirect:/department/allDepartment";
+        return "redirect:/department/department_list";
     }
 
     @RequestMapping("/toUpdateDepartment")
@@ -54,13 +66,27 @@ public class DepartmentController {
         departmentService.updateDepartment(departments);
         Department department = departmentService.queryDepartmentByDepartmentId(departments.getDepartmentId());
         model.addAttribute("department", department);
-        return "redirect:/department/allDepartment";
+        return "redirect:/department/department_list";
     }
 
     @RequestMapping("/toDeleteDepartment/{departmentId}")
     public String deleteDepartment(@PathVariable("departmentId") String departmentId) {
         departmentService.deleteDepartmentByDepartmentId(departmentId);
         System.out.println("删除成功！");
-        return "redirect:/department/allDepartment";
+        return "redirect:/department/department_list";
+    }
+
+    @RequestMapping("department_list")
+    public String list(Model model, Page page) {
+        List<Staff> list = departmentService.list(page);
+        int total = staffService.total();
+        page.setTotal(total);
+        model.addAttribute("listDepartment", list);
+        model.addAttribute("pageDepartment", page);
+        System.out.println(page);
+        for (Staff department : list) {
+            System.out.println(department);
+        }
+        return "DepartmentPage";
     }
 }

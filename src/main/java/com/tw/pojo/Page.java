@@ -41,14 +41,17 @@ public class Page {
     public int getTotalPage() {
         int totalPage;
         // 假设总数是50，是能够被5整除的，那么就有10页。举例：50/5=10···0，20/5=4···0
-        if (0 == total % count)
+        if (0 == total % count) {
             totalPage = total / count;
-            // 假设总数是51，不能够被5整除的，那么就有11页。举例：51/5=10···1
-        else
+        }
+        // 假设总数是51，不能够被5整除的，那么就有11页。举例：51/5=10···1
+        else {
             totalPage = total / count + 1;
+        }
         //如果总页数为0，默认总页数为一页。即4/5=0···4；3/5=0···3；
-        if (0 == totalPage)
+        if (0 == totalPage) {
             totalPage = 1;
+        }
         return totalPage;
     }
 
@@ -56,11 +59,13 @@ public class Page {
     public int getLast() {
         int last;
         // 假设总数是50，是能够被5整除的，那么推算出最后一页的开始位置的数据的数值就是45
-        if (0 == total % count)
+        if (0 == total % count) {
             last = total - count;
-            // 假设总数是51，不能够被5整除的，那么推算出最后一页的开始的数据的数值就是50
-        else
+        }
+        // 假设总数是51，不能够被5整除的，那么推算出最后一页的开始的数据的数值就是50
+        else {
             last = total - total % count;
+        }
         last = Math.max(last, 0);
         return last;
     }

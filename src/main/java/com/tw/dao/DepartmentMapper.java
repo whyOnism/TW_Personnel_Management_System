@@ -1,6 +1,8 @@
 package com.tw.dao;
 
 import com.tw.pojo.Department;
+import com.tw.pojo.Page;
+import com.tw.pojo.Staff;
 
 import java.util.List;
 
@@ -19,4 +21,9 @@ public interface DepartmentMapper {
 
     //  查询所有部门信息
     List<Department> queryAllDepartment();
+
+    //分页查询
+    List<Staff> list(Page page);
+
+    int total();
 }

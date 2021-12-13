@@ -3,25 +3,27 @@ package com.tw.controller;
 import com.tw.pojo.Page;
 import com.tw.pojo.Staff;
 import com.tw.service.StaffService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
+/**
+ * @author why099
+ */
 @Controller
 @RequestMapping("/staff")
 public class StaffController {
-    @Autowired
-    @Qualifier("staffServiceImpl")
-    private StaffService staffService;
 
-    @RequestMapping("/allStaff")
-    public String list() {
-        return "StaffPage";
+    @Qualifier("staffServiceImpl")
+    private final StaffService staffService;
+
+    public StaffController(StaffService staffService) {
+        this.staffService = staffService;
     }
 
     @RequestMapping("/toAddStaff")
@@ -30,10 +32,14 @@ public class StaffController {
     }
 
     @RequestMapping("/addStaff")
-    public String addPaper(Staff staff) {
+    public String addPaper(HttpSession session, Staff staff, Page page) {
         System.out.println(staff);
         staffService.addStaff(staff);
-        return "redirect:/staff/allStaff";
+        int total = staffService.total();
+        page.setTotal(total);
+        System.out.println(total);
+        session.setAttribute("staffNumber", total);
+        return "redirect:/staff/staff_list";
     }
 
     @RequestMapping("/toUpdateStaff")
@@ -50,14 +56,14 @@ public class StaffController {
         staffService.updateStaff(staffs);
         Staff staff = staffService.queryStaffByStaffId(staffs.getStaffId());
         model.addAttribute("staff", staff);
-        return "redirect:/staff/allStaff";
+        return "redirect:/staff/staff_list";
     }
 
     @RequestMapping("/toDeleteStaff/{staffId}")
     public String deleteStaff(@PathVariable("staffId") String staffId) {
         staffService.deleteStaffByStaffId(staffId);
         System.out.println("删除成功！");
-        return "redirect:/staff/allStaff";
+        return "redirect:/staff/staff_list";
     }
 
     @RequestMapping("staff_list")
@@ -65,8 +71,8 @@ public class StaffController {
         List<Staff> list = staffService.list(page);
         int total = staffService.total();
         page.setTotal(total);
-        model.addAttribute("list", list);
-        model.addAttribute("page", page);
+        model.addAttribute("listStaff", list);
+        model.addAttribute("pageStaff", page);
         System.out.println(page);
         for (Staff staff : list) {
             System.out.println(staff);

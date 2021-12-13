@@ -2,7 +2,6 @@ package com.tw.controller;
 
 import com.tw.pojo.Administrators;
 import com.tw.service.AdministratorsService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,13 +10,19 @@ import javax.servlet.http.HttpSession;
 import java.io.Serializable;
 import java.util.HashMap;
 
+/**
+ * @author why099
+ */
 @Controller
 @RequestMapping("/admin")
 public class AdministratorsController {
 
-    @Autowired
     @Qualifier("administratorsServiceImpl")
-    private AdministratorsService administratorsService;
+    private final AdministratorsService administratorsService;
+
+    public AdministratorsController(AdministratorsService administratorsService) {
+        this.administratorsService = administratorsService;
+    }
 
     @RequestMapping("/login")
     public Serializable login(HttpSession session, String username, String password) {

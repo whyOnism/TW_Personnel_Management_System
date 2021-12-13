@@ -2,7 +2,6 @@ package com.tw.controller;
 
 import com.tw.pojo.Ordinary;
 import com.tw.service.OrdinaryService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,13 +10,19 @@ import javax.servlet.http.HttpSession;
 import java.io.Serializable;
 import java.util.HashMap;
 
+/**
+ * @author why099
+ */
 @Controller
 @RequestMapping("/user")
 public class OrdinaryController {
 
-    @Autowired
     @Qualifier("ordinaryServiceImpl")
-    private OrdinaryService ordinaryService;
+    private final OrdinaryService ordinaryService;
+
+    public OrdinaryController(OrdinaryService ordinaryService) {
+        this.ordinaryService = ordinaryService;
+    }
 
     @RequestMapping("/login")
     public Serializable login(HttpSession session, String username, String password) {

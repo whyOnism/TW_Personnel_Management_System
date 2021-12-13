@@ -1,20 +1,30 @@
 package com.tw.controller;
 
 import com.tw.pojo.Page;
+import com.tw.service.DepartmentService;
 import com.tw.service.StaffService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
 
+/**
+ * @author why099
+ */
 @Controller
 @RequestMapping("/login")
 public class LoginController {
-    @Autowired
+
     @Qualifier("staffServiceImpl")
-    private StaffService staffService;
+    private final StaffService staffService;
+
+    private final DepartmentService departmentService;
+
+    public LoginController(StaffService staffService, DepartmentService departmentService) {
+        this.staffService = staffService;
+        this.departmentService = departmentService;
+    }
 
     @RequestMapping("/loginPage")
     public String turnToLoginPage() {
@@ -22,20 +32,28 @@ public class LoginController {
     }
 
     @RequestMapping("/verification")
-    public String VerificationUserType(HttpSession session, String userType,
+    public String verificationUserType(HttpSession session, String userType,
                                        String username, String password, Page page) {
         System.out.println(username + " " + password);
         session.setAttribute("userType", userType);
         session.setAttribute("username", username);
         session.setAttribute("password", password);
-        if (userType.equals("Admin")) {
+        if ("Admin".equals(userType)) {
             int total = staffService.total();
             page.setTotal(total);
             System.out.println(total);
             session.setAttribute("staffNumber", total);
+            total = departmentService.total();
+            session.setAttribute("departmentNumber", total);
             return "redirect:/admin/login";
         }
-        if (userType.equals("Ordinary")) {
+        if ("Ordinary".equals(userType)) {
+            int total = staffService.total();
+            page.setTotal(total);
+            System.out.println(total);
+            session.setAttribute("staffNumber", total);
+            total = departmentService.total();
+            session.setAttribute("departmentNumber", total);
             return "redirect:/user/login";
         }
         return "login";

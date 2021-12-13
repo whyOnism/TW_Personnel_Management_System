@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tw.dao.OrdinaryMapper">
+    <select id="selectUserByUserNameExist" parameterType="String" resultType="Ordinary">
+        select UserId, UserName, Password
+        from personnel_management.ordinary
+        where UserName = #{UserName}
+    </select>
+
+    <select id="selectUserByUserNameCheck" parameterType="Ordinary" resultType="Ordinary">
+        select UserId, UserName, Password
+        from personnel_management.ordinary
+        where UserName = #{UserName}
+          and Password = #{Password}
+    </select>
+
+    <insert id="addUser" parameterType="Ordinary">
+        insert into personnel_management.ordinary (UserId, UserName, Password)
+        values (#{UserId}, #{UserName}, #{Password})
+    </insert>
+</mapper>

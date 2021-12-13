@@ -53,7 +53,7 @@
                         class="icon-interface-windows"></i>数据信息</a>
                     <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
                         <li><a href="${pageContext.request.contextPath}/staff/staff_list" class="active">员工信息</a></li>
-                        <li><a href="${pageContext.request.contextPath}/department/allDepartment">部门信息</a></li>
+                        <li><a href="${pageContext.request.contextPath}/department/department_list">部门信息</a></li>
                         <li><a href="${pageContext.request.contextPath}">合同信息</a></li>
                     </ul>
                 </li>
@@ -92,7 +92,7 @@
                     <div class="wrapper count-title d-flex">
                         <div class="icon"><i class="icon-user"></i></div>
                         <div class="name"><strong class="text-uppercase">员工数</strong><span>在职员工</span>
-                            <div class="count-number">${page.getTotal()}</div>
+                            <div class="count-number"><% out.println(session.getAttribute("staffNumber"));%></div>
                         </div>
                     </div>
                 </div>
@@ -110,7 +110,7 @@
                     <div class="wrapper count-title d-flex">
                         <div class="icon"><i class="icon-check"></i></div>
                         <div class="name"><strong class="text-uppercase">部门数</strong><span>过去两个月</span>
-                            <div class="count-number">4</div>
+                            <div class="count-number"><% out.println(session.getAttribute("departmentNumber"));%></div>
                         </div>
                     </div>
                 </div>
@@ -158,7 +158,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach var="staff" items="${requestScope.get('list')}">
+                        <c:forEach var="staff" items="${requestScope.get('listStaff')}">
                             <tr>
                                 <td>${staff.getStaffId()}</td>
                                 <td>${staff.getStaffName()}</td>
@@ -166,7 +166,7 @@
                                 <td>${staff.getStaffSex()}</td>
                                 <td>${staff.getStaffPolitical()}</td>
                                 <td>${staff.getStaffPosition()}</td>
-                                <td>${staff.getStaffDepartment()}</td>
+                                <td>${staff.getDepartmentName()}</td>
                                 <td>${staff.getStaffAddress()}</td>
                                 <td>${staff.getHireDate()}</td>
                                 <td>${staff.getWorkingYears()}</td>
@@ -181,31 +181,32 @@
                     </table>
                     <div>
                         <ul class="pagination">
-                            <li class="<c:if test="${!page.isHasPrevious()}">disabled</c:if> page-item">
+                            <li class="<c:if test="${!pageStaff.isHasPrevious()}">disabled</c:if> page-item">
                                 <a href="?start=0" aria-label="Previous" class="page-link">
                                     <span aria-hidden="true">&laquo;</span>
                                 </a>
                             </li>
-                            <li class="<c:if test="${!page.isHasPrevious()}">disabled</c:if> page-item">
-                                <a href="?start=${page.getStart()-page.getCount()}" aria-label="Previous"
+                            <li class="<c:if test="${!pageStaff.isHasPrevious()}">disabled</c:if> page-item">
+                                <a href="?start=${pageStaff.getStart()-pageStaff.getCount()}" aria-label="Previous"
                                    class="page-link">
                                     <span aria-hidden="true">‹</span>
                                 </a>
                             </li>
-                            <c:forEach begin="0" end="${page.getTotalPage()-1}" varStatus="status">
-                                <li class="<c:if test="${status.index*page.getCount() == page.getStart()}">disabled</c:if> page-item">
-                                    <a href="?start=${status.index*page.getCount()}"
-                                       class="<c:if test="${status.index*page.getCount() == page.getStart()}">current</c:if> page-link"
+                            <c:forEach begin="0" end="${pageStaff.getTotalPage()-1}" varStatus="status">
+                                <li class="<c:if test="${status.index*pageStaff.getCount() == pageStaff.getStart()}">disabled</c:if> page-item">
+                                    <a href="?start=${status.index*pageStaff.getCount()}"
+                                       class="<c:if test="${status.index*pageStaff.getCount() == pageStaff.getStart()}">current</c:if> page-link"
                                     > ${status.getCount()}</a>
                                 </li>
                             </c:forEach>
-                            <li class="<c:if test="${!page.isHasNext()}">disabled</c:if> page-item">
-                                <a href="?start=${page.getStart()+page.getCount()}" aria-label="Next" class="page-link">
+                            <li class="<c:if test="${!pageStaff.isHasNext()}">disabled</c:if> page-item">
+                                <a href="?start=${pageStaff.getStart()+pageStaff.getCount()}" aria-label="Next"
+                                   class="page-link">
                                     <span aria-hidden="true">›</span>
                                 </a>
                             </li>
-                            <li class="<c:if test="${!page.isHasNext()}">disabled</c:if> page-item">
-                                <a href="?start=${page.getLast()}" aria-label="Next" class="page-link">
+                            <li class="<c:if test="${!pageStaff.isHasNext()}">disabled</c:if> page-item">
+                                <a href="?start=${pageStaff.getLast()}" aria-label="Next" class="page-link">
                                     <span aria-hidden="true">&raquo;</span>
                                 </a>
                             </li>

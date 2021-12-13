@@ -6,9 +6,9 @@
     <!--增加一个员工-->
     <insert id="addStaff" parameterType="Staff">
         insert into personnel_management.staff (StaffId, StaffName, StaffAge, StaffSex, StaffPolitical, StaffPosition,
-                                                StaffDepartment, StaffAddress, HireDate, WorkingYears)
+                                                DepartmentId, StaffAddress, HireDate, WorkingYears)
         values (#{StaffId}, #{StaffName}, #{StaffAge}, #{StaffSex}, #{StaffPolitical}, #{StaffPosition},
-                #{StaffDepartment}, #{StaffAddress}, #{HireDate}, #{WorkingYears});
+                #{DepartmentId}, #{StaffAddress}, #{HireDate}, #{WorkingYears});
     </insert>
     <!--根据StaffId删除一个员工-->
     <delete id="deleteStaffByStaffId">
@@ -24,7 +24,7 @@
             StaffSex       = #{StaffSex},
             StaffPolitical = #{StaffPolitical},
             StaffPosition  = #{StaffPosition},
-            StaffDepartment= #{StaffDepartment},
+            DepartmentId= #{DepartmentId},
             StaffAddress   = #{StaffAddress},
             HireDate       = #{HireDate},
             WorkingYears   = #{WorkingYears}
@@ -46,7 +46,8 @@
     <!--limit后第一个参数start，是起始查询位置（不包含），第二个参数是每页的数据条数。-->
     <!--举例：第3条数据（包含）到第8条数据（包含）共6条，那么start=2，count=8-2=6。-->
     <select id="list" resultType="Staff">
-        select * from personnel_management.staff order by StaffId desc
+        select * from personnel_management.department inner join personnel_management.staff using(DepartmentId) order by
+        (StaffId) asc
         <if test="start!=null and count!=null">
             limit #{start},#{count}
         </if>

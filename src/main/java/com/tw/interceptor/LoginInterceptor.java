@@ -17,6 +17,10 @@ public class LoginInterceptor implements HandlerInterceptor {
             return true;
         }
         HttpSession session = request.getSession();
+        System.out.println("username: " + session.getAttribute("username")
+                + "\n" + "password: " + session.getAttribute("password") + "\n"
+                + "staffNumber: " + session.getAttribute("staffNumber") + "\n"
+                + "departmentNumber: " + session.getAttribute("departmentNumber"));
         if (session.getAttribute("username") != null && session.getAttribute("password") != null) {
             return true;
         }
