@@ -71,13 +71,13 @@ $(document).ready(function () {
         type: 'doughnut',
         data: {
             labels: [
-                "First",
-                "Second",
-                "Third"
+                "技术部",
+                "销售部",
+                "后勤部"
             ],
             datasets: [
                 {
-                    data: [300, 50, 100],
+                    data: [6, 5, 1],
                     borderWidth: [1, 1, 1],
                     backgroundColor: [
                         brandPrimary,

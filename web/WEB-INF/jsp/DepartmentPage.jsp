@@ -48,7 +48,7 @@
         <div class="main-menu">
             <h5 class="sidenav-heading">主要</h5>
             <ul id="side-main-menu" class="side-menu list-unstyled">
-                <li><a href="/"> <i class="icon-home"></i>主页 </a></li>
+                <li><a href="${pageContext.request.contextPath}/toHome/homePage"> <i class="icon-home"></i>主页 </a></li>
                 <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i
                         class="icon-interface-windows"></i>数据信息</a>
                     <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
@@ -158,7 +158,7 @@
                                 <td>
                                     <a href="${pageContext.request.contextPath}/department/toUpdateDepartment?staffId=${department.getDepartmentId()}">更改</a>
                                     |
-                                    <a href="${pageContext.request.contextPath}/staff/toDeleteDepartment${department.getDepartmentId()}">删除</a>
+                                    <a href="${pageContext.request.contextPath}/department/toDeleteDepartment/${department.getDepartmentId()}">删除</a>
                                 </td>
                             </tr>
                         </c:forEach>

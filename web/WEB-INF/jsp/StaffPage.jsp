@@ -48,7 +48,7 @@
         <div class="main-menu">
             <h5 class="sidenav-heading">主要</h5>
             <ul id="side-main-menu" class="side-menu list-unstyled">
-                <li><a href="/"> <i class="icon-home"></i>主页 </a></li>
+                <li><a href="${pageContext.request.contextPath}/toHome/homePage"> <i class="icon-home"></i>主页 </a></li>
                 <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i
                         class="icon-interface-windows"></i>数据信息</a>
                     <ul id="exampledropdownDropdown" class="collapse list-unstyled ">

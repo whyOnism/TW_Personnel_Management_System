@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -41,19 +42,28 @@ public class DepartmentController {
     }
 
     @RequestMapping("/toAddDepartment")
-    public String toAddPaper() {
+    public String toAddPaper(HttpSession session) {
+        if ("Ordinary".equals(session.getAttribute("userType"))) {
+            return "redirect:/department/department_list";
+        }
         return "addDepartment";
     }
 
     @RequestMapping("/addDepartment")
-    public String addPaper(Department department) {
+    public String addPaper(HttpSession session, Department department) {
         System.out.println(department);
         departmentService.addDepartment(department);
+        int total = departmentService.total();
+        session.setAttribute("departmentNumber", total);
+        System.out.println(total);
         return "redirect:/department/department_list";
     }
 
     @RequestMapping("/toUpdateDepartment")
-    public String toUpdateDepartment(Model model, String departmentId) {
+    public String toUpdateDepartment(HttpSession session, Model model, String departmentId) {
+        if ("Ordinary".equals(session.getAttribute("userType"))) {
+            return "redirect:/department/department_list";
+        }
         Department department = departmentService.queryDepartmentByDepartmentId(departmentId);
         System.out.println(department);
         model.addAttribute("department", department);
@@ -61,7 +71,7 @@ public class DepartmentController {
     }
 
     @RequestMapping("/updateDepartment")
-    public String updateBook(Model model, Department departments) {
+    public String updateDepartment(Model model, Department departments) {
         System.out.println(departments);
         departmentService.updateDepartment(departments);
         Department department = departmentService.queryDepartmentByDepartmentId(departments.getDepartmentId());
@@ -70,9 +80,15 @@ public class DepartmentController {
     }
 
     @RequestMapping("/toDeleteDepartment/{departmentId}")
-    public String deleteDepartment(@PathVariable("departmentId") String departmentId) {
+    public String delete(HttpSession session, @PathVariable("departmentId") String departmentId) {
+        if ("Ordinary".equals(session.getAttribute("userType"))) {
+            return "redirect:/department/department_list";
+        }
         departmentService.deleteDepartmentByDepartmentId(departmentId);
         System.out.println("删除成功！");
+        int total = departmentService.total();
+        session.setAttribute("departmentNumber", total);
+        System.out.println(total);
         return "redirect:/department/department_list";
     }
 

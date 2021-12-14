@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="xlink" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="s" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
@@ -40,7 +41,7 @@
                 <h2 class="h5">${username}</h2><span>企业人事管理系统</span>
             </div>
             <!-- Small Brand information, appears on minimized sidebar-->
-            <div class="sidenav-header-logo"><a href="#" class="brand-small text-center">
+            <div class="sidenav-header-logo"><a href="index.html" class="brand-small text-center">
                 <strong>T</strong><strong class="text-primary">W</strong></a></div>
         </div>
         <!-- Sidebar Navigation Menus-->
@@ -51,8 +52,8 @@
                 <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i
                         class="icon-interface-windows"></i>数据信息</a>
                     <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-                        <li><a href="${pageContext.request.contextPath}/staff/staff_list">员工信息</a></li>
-                        <li><a href="${pageContext.request.contextPath}/department/department_list">部门信息</a></li>
+                        <li><a href="${pageContext.request.contextPath}/staff/staff_list" class="active">员工信息</a></li>
+                        <li><a href="${pageContext.request.contextPath}/department/allDepartment">部门信息</a></li>
                         <li><a href="${pageContext.request.contextPath}">合同信息</a></li>
                     </ul>
                 </li>
@@ -116,53 +117,36 @@
             </div>
         </div>
     </section>
-    <!-- Header Section-->
-    <section class="dashboard-header section-padding">
-        <div class="container-fluid">
-            <div class="row d-flex align-items-md-stretch justify-content-center">
-                <!-- Pie Chart-->
-                <div class="col-lg-3 col-md-6">
-                    <div class="card project-progress">
-                        <h2 class="display h4">各部门人数占比</h2>
-                        <div class="pie-chart">
-                            <canvas id="pieChart" width="300" height="300"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <hr/>
     <!-- Statistics Section-->
     <section class="statistics">
         <div class="container-fluid">
-            <div class="row d-flex justify-content-around">
-                <div class="col-lg-4">
-                    <!-- Income-->
-                    <div class="card income text-center">
-                        <div class="icon"><i class="icon-line-chart"></i></div>
-                        <div class="number"><% out.println(session.getAttribute("staffNumber"));%></div>
-                        <strong class="text-primary">员工总数</strong>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <!-- User Actibity-->
-                    <div class="card user-activity">
-                        <h2 class="display h4">网站访问活跃度</h2>
-                        <div class="number">210</div>
-                        <h3 class="h4 display">普通用户</h3>
-                        <div class="progress">
-                            <div role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0"
-                                 aria-valuemax="100" class="progress-bar progress-bar bg-primary"></div>
-                        </div>
-                        <div class="page-statistics d-flex justify-content-between">
-                            <div class="page-statistics-left"><span>浏览条数</span><strong>230</strong>
-                            </div>
-                            <div class="page-statistics-right"><span>普通用户占比</span><strong>73.4%</strong>
-                            </div>
-                        </div>
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <div class="page-header">
+                        <h1>新增部门</h1>
                     </div>
                 </div>
             </div>
+            <form action="${pageContext.request.contextPath}/department/addDepartment" method="post">
+                <hr class="my-4">
+                <div class="row gy-3">
+                    <div class="col-12">
+                        <label for="DepartmentId" class="form-label">部门Id<span class="text-muted">: </span></label>
+                        <input type="text" class="form-control" id="DepartmentId" placeholder="DepartmentId"
+                               name="DepartmentId">
+                    </div>
+                </div>
+                <div class="row gy-3">
+                    <div class="col-12">
+                        <label for="DepartmentName" class="form-label">部门名称<span class="text-muted">: </span></label>
+                        <input type="text" class="form-control" id="DepartmentName" placeholder="DepartmentName"
+                               name="DepartmentName">
+                    </div>
+                </div>
+                <hr class="my-4">
+                <button class="w-100 btn btn-primary btn-lg" type="submit">添加部门</button>
+            </form>
         </div>
     </section>
     <footer class="main-footer">

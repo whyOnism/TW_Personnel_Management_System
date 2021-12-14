@@ -27,7 +27,10 @@ public class StaffController {
     }
 
     @RequestMapping("/toAddStaff")
-    public String toAddPaper() {
+    public String toAddPaper(HttpSession session) {
+        if ("Ordinary".equals(session.getAttribute("userType"))) {
+            return "redirect:/staff/staff_list";
+        }
         return "addStaff";
     }
 
@@ -43,7 +46,10 @@ public class StaffController {
     }
 
     @RequestMapping("/toUpdateStaff")
-    public String toUpdateStaff(Model model, String staffId) {
+    public String toUpdateStaff(HttpSession session, Model model, String staffId) {
+        if ("Ordinary".equals(session.getAttribute("userType"))) {
+            return "redirect:/staff/staff_list";
+        }
         Staff staff = staffService.queryStaffByStaffId(staffId);
         System.out.println(staff);
         model.addAttribute("staff", staff);
@@ -60,9 +66,15 @@ public class StaffController {
     }
 
     @RequestMapping("/toDeleteStaff/{staffId}")
-    public String deleteStaff(@PathVariable("staffId") String staffId) {
+    public String deleteStaff(HttpSession session, @PathVariable("staffId") String staffId) {
+        if ("Ordinary".equals(session.getAttribute("userType"))) {
+            return "redirect:/staff/staff_list";
+        }
         staffService.deleteStaffByStaffId(staffId);
+        int total = staffService.total();
+        System.out.println(total);
         System.out.println("删除成功！");
+        session.setAttribute("staffNumber", total);
         return "redirect:/staff/staff_list";
     }
 
