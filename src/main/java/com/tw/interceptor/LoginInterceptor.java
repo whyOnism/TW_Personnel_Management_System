@@ -13,7 +13,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         System.out.println("-------处理请求前-------");
         System.out.println("uri: " + request.getRequestURI());
-        if (request.getRequestURI().contains("login")) {
+        if (request.getRequestURI().contains("login") || request.getRequestURI().contains("register")) {
             return true;
         }
         HttpSession session = request.getSession();

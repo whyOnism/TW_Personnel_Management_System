@@ -55,6 +55,9 @@
                         <li><a href="${pageContext.request.contextPath}/staff/staff_list" class="active">员工信息</a></li>
                         <li><a href="${pageContext.request.contextPath}/department/allDepartment">部门信息</a></li>
                         <li><a href="${pageContext.request.contextPath}">合同信息</a></li>
+                        <c:if test="${userType==\"Admin\"}">
+                            <li><a href="${pageContext.request.contextPath}/user/ordinary_list">登录用户</a></li>
+                        </c:if>
                     </ul>
                 </li>
             </ul>

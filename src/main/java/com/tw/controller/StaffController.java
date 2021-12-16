@@ -52,7 +52,7 @@ public class StaffController {
         }
         Staff staff = staffService.queryStaffByStaffId(staffId);
         System.out.println(staff);
-        model.addAttribute("staff", staff);
+        model.addAttribute("oneStaff", staff);
         return "updateStaff";
     }
 
@@ -61,7 +61,7 @@ public class StaffController {
         System.out.println(staffs);
         staffService.updateStaff(staffs);
         Staff staff = staffService.queryStaffByStaffId(staffs.getStaffId());
-        model.addAttribute("staff", staff);
+        model.addAttribute("oneStaff", staff);
         return "redirect:/staff/staff_list";
     }
 

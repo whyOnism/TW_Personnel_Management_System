@@ -1,6 +1,9 @@
 package com.tw.service;
 
 import com.tw.pojo.Ordinary;
+import com.tw.pojo.Page;
+
+import java.util.List;
 
 public interface OrdinaryService {
     //判断用户是否存在
@@ -11,4 +14,10 @@ public interface OrdinaryService {
 
     //增加一个用户
     boolean addUser(Ordinary ordinary);
+
+    List<Ordinary> queryUser();
+
+    List<Ordinary> list(Page page);
+
+    int total();
 }

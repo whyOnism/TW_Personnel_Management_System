@@ -20,4 +20,16 @@
         insert into personnel_management.ordinary (UserId, UserName, Password)
         values (#{UserId}, #{UserName}, #{Password})
     </insert>
+
+    <select id="list" resultType="ordinary">
+        select * from personnel_management.ordinary
+        <if test="start!=null and count!=null">
+            limit #{start},#{count}
+        </if>
+    </select>
+    <!--查询数据库表里面的总数据量-->
+    <select id="total" resultType="int">
+        select count(*)
+        from personnel_management.ordinary
+    </select>
 </mapper>

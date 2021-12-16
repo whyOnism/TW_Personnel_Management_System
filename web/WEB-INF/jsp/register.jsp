@@ -9,7 +9,7 @@
 </head>
 <body class="text-center bg-dark">
 <main class="form-sign-in">
-    <form action="${pageContext.request.contextPath}/login/loginPage" method="post">
+    <form action="${pageContext.request.contextPath}/register/verification" method="post">
         <h1 class="h3 mb-3 fw-normal text-white">注&nbsp;&nbsp;册</h1>
         <div class="form-floating mb-2">
             <input type="username" class="form-control" name="username" id="floatingUsername" placeholder="username">

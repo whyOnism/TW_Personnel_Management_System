@@ -53,11 +53,8 @@
                         class="icon-interface-windows"></i>数据信息</a>
                     <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
                         <li><a href="${pageContext.request.contextPath}/staff/staff_list" class="active">员工信息</a></li>
-                        <li><a href="${pageContext.request.contextPath}/department/department_list">部门信息</a></li>
+                        <li><a href="${pageContext.request.contextPath}/department/allDepartment">部门信息</a></li>
                         <li><a href="${pageContext.request.contextPath}">合同信息</a></li>
-                        <c:if test="${userType==\"Admin\"}">
-                            <li><a href="${pageContext.request.contextPath}/user/ordinary_list">登录用户</a></li>
-                        </c:if>
                     </ul>
                 </li>
             </ul>
@@ -126,7 +123,7 @@
             <div class="row clearfix">
                 <div class="col-md-12 column">
                     <div class="page-header">
-                        <div class="name"><strong class="text-uppercase">员工列表</strong>————<span>显示在职所有员工</span></div>
+                        <div class="name"><strong class="text-uppercase">用户列表</strong>————<span>显示所有用户</span></div>
                     </div>
                 </div>
             </div>
@@ -136,7 +133,7 @@
             <div class="row">
                 <div class="col-md-4 column">
                     <a class="btn btn-primary shadow-sm"
-                       href="${pageContext.request.contextPath}/staff/toAddStaff">新增</a>
+                       href="${pageContext.request.contextPath}/department/toAddDepartment">新增</a>
                 </div>
             </div>
 
@@ -147,36 +144,21 @@
                     <table class="table table-hover table-striped">
                         <thead>
                         <tr>
-                            <th>员工Id</th>
-                            <th>员工名</th>
-                            <th>员工年龄</th>
-                            <th>性别</th>
-                            <th>政治面貌</th>
-                            <th>职位</th>
-                            <th>部门</th>
-                            <th>地址</th>
-                            <th>入职时间</th>
-                            <th>工龄</th>
-                            <th>操作</th>
+                            <th>用户Id：</th>
+                            <th>用户名：</th>
+                            <th>用户密码：</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach var="staff" items="${requestScope.get('listStaff')}">
+                        <c:forEach var="user" items="${requestScope.get('listUser')}">
                             <tr>
-                                <td>${staff.getStaffId()}</td>
-                                <td>${staff.getStaffName()}</td>
-                                <td>${staff.getStaffAge()}</td>
-                                <td>${staff.getStaffSex()}</td>
-                                <td>${staff.getStaffPolitical()}</td>
-                                <td>${staff.getStaffPosition()}</td>
-                                <td>${staff.getDepartmentName()}</td>
-                                <td>${staff.getStaffAddress()}</td>
-                                <td>${staff.getHireDate()}</td>
-                                <td>${staff.getWorkingYears()}</td>
+                                <td>${user.getUserId()}</td>
+                                <td>${user.getUserName()}</td>
+                                <td>${user.getPassword()}</td>
                                 <td>
-                                    <a href="${pageContext.request.contextPath}/staff/toUpdateStaff?staffId=${staff.getStaffId()}">更改</a>
+                                    <a href="${pageContext.request.contextPath}/user/toUpdateUser?userName=${department.getUserName()}">更改</a>
                                     |
-                                    <a href="${pageContext.request.contextPath}/staff/toDeleteStaff/${staff.getStaffId()}">删除</a>
+                                    <a href="${pageContext.request.contextPath}/user/toDeleteUser/${department.getUserName()}">删除</a>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -184,32 +166,33 @@
                     </table>
                     <div>
                         <ul class="pagination">
-                            <li class="<c:if test="${!pageStaff.isHasPrevious()}">disabled</c:if> page-item">
+                            <li class="<c:if test="${!pageUser.isHasPrevious()}">disabled</c:if> page-item">
                                 <a href="?start=0" aria-label="Previous" class="page-link">
                                     <span aria-hidden="true">&laquo;</span>
                                 </a>
                             </li>
-                            <li class="<c:if test="${!pageStaff.isHasPrevious()}">disabled</c:if> page-item">
-                                <a href="?start=${pageStaff.getStart()-pageStaff.getCount()}" aria-label="Previous"
+                            <li class="<c:if test="${!pageUser.isHasPrevious()}">disabled</c:if> page-item">
+                                <a href="?start=${pageUser.getStart()-pageUser.getCount()}"
+                                   aria-label="Previous"
                                    class="page-link">
                                     <span aria-hidden="true">‹</span>
                                 </a>
                             </li>
-                            <c:forEach begin="0" end="${pageStaff.getTotalPage()-1}" varStatus="status">
-                                <li class="<c:if test="${status.index*pageStaff.getCount() == pageStaff.getStart()}">disabled</c:if> page-item">
-                                    <a href="?start=${status.index*pageStaff.getCount()}"
-                                       class="<c:if test="${status.index*pageStaff.getCount() == pageStaff.getStart()}">current</c:if> page-link"
+                            <c:forEach begin="0" end="${pageUser.getTotalPage()-1}" varStatus="status">
+                                <li class="<c:if test="${status.index*pageUser.getCount() == pageUser.getStart()}">disabled</c:if> page-item">
+                                    <a href="?start=${status.index*pageUser.getCount()}"
+                                       class="<c:if test="${status.index*pageUser.getCount() == pageUser.getStart()}">current</c:if> page-link"
                                     > ${status.getCount()}</a>
                                 </li>
                             </c:forEach>
-                            <li class="<c:if test="${!pageStaff.isHasNext()}">disabled</c:if> page-item">
-                                <a href="?start=${pageStaff.getStart()+pageStaff.getCount()}" aria-label="Next"
-                                   class="page-link">
+                            <li class="<c:if test="${!pageUser.isHasNext()}">disabled</c:if> page-item">
+                                <a href="?start=${pageUser.getStart()+pageUser.getCount()}"
+                                   aria-label="Next" class="page-link">
                                     <span aria-hidden="true">›</span>
                                 </a>
                             </li>
-                            <li class="<c:if test="${!pageStaff.isHasNext()}">disabled</c:if> page-item">
-                                <a href="?start=${pageStaff.getLast()}" aria-label="Next" class="page-link">
+                            <li class="<c:if test="${!pageUser.isHasNext()}">disabled</c:if> page-item">
+                                <a href="?start=${pageUser.getLast()}" aria-label="Next" class="page-link">
                                     <span aria-hidden="true">&raquo;</span>
                                 </a>
                             </li>
