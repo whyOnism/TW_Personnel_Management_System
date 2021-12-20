@@ -56,4 +56,10 @@
         from personnel_management.department
     </select>
 
+    <select id="totalRespectively" resultType="int">
+        select count(*)
+        from personnel_management.staff
+        where DepartmentId = #{DepartmentId}
+    </select>
+
 </mapper>

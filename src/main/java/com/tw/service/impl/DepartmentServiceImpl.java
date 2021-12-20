@@ -54,4 +54,9 @@ public class DepartmentServiceImpl implements DepartmentService {
     public int total() {
         return departmentMapper.total();
     }
+
+    @Override
+    public int totalRespectively(String DepartmentId) {
+        return departmentMapper.totalRespectively(DepartmentId);
+    }
 }

@@ -76,8 +76,6 @@ $(document).ready(function () {
     // Pie Chart
     // ------------------------------------------------------ //
     var PIECHART = $('#pieChart');
-    var staff = requestScope.get('staffNumber');
-    var depatrment = requestScope.get('departmentNumber');
     var myPieChart = new Chart(PIECHART, {
         type: 'doughnut',
         data: {

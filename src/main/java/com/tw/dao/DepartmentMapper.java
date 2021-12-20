@@ -26,4 +26,6 @@ public interface DepartmentMapper {
     List<Staff> list(Page page);
 
     int total();
+
+    int totalRespectively(String DepartmentId);
 }

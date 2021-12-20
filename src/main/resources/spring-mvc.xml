@@ -21,6 +21,10 @@
             <mvc:mapping path="/**"/>
             <bean class="com.tw.interceptor.LoginInterceptor"/>
         </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.tw.interceptor.DataInterceptor"/>
+        </mvc:interceptor>
     </mvc:interceptors>
 
     <!--配置jsp 显示ViewResolver视图解析器 -->

@@ -45,6 +45,14 @@ public class LoginController {
             session.setAttribute("staffNumber", total);
             total = departmentService.total();
             session.setAttribute("departmentNumber", total);
+            int technology, sales, logistics;
+            technology = departmentService.totalRespectively("D001");
+            sales = departmentService.totalRespectively("D002");
+            logistics = departmentService.totalRespectively("D003");
+            System.out.println(technology + " " + sales + " " + logistics);
+            session.setAttribute("technology", technology);
+            session.setAttribute("sales", sales);
+            session.setAttribute("logistics", logistics);
             return "redirect:/admin/login";
         }
         if ("Ordinary".equals(userType)) {
@@ -54,6 +62,14 @@ public class LoginController {
             session.setAttribute("staffNumber", total);
             total = departmentService.total();
             session.setAttribute("departmentNumber", total);
+            int technology, sales, logistics;
+            technology = departmentService.totalRespectively("D001");
+            sales = departmentService.totalRespectively("D002");
+            logistics = departmentService.totalRespectively("D003");
+            System.out.println(technology + " " + sales + " " + logistics);
+            session.setAttribute("technology", technology);
+            session.setAttribute("sales", sales);
+            session.setAttribute("logistics", logistics);
             return "redirect:/user/login";
         }
         return "login";

@@ -26,4 +26,6 @@ public interface DepartmentService {
     List<Staff> list(Page page);
 
     int total();
+
+    int totalRespectively(String DepartmentId);
 }
